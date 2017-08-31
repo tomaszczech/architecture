@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class Runner implements CommandLineRunner {
 
 	private final RabbitTemplate rabbitTemplate;
-	private final Receiver receiver;
+	private final Receiver1 receiver1;
 	private final ConfigurableApplicationContext context;
 
-	public Runner(Receiver receiver, RabbitTemplate rabbitTemplate,
+	public Runner(Receiver1 receiver1, RabbitTemplate rabbitTemplate,
 			ConfigurableApplicationContext context) {
-		this.receiver = receiver;
+		this.receiver1 = receiver1;
 		this.rabbitTemplate = rabbitTemplate;
 		this.context = context;
 	}
@@ -25,7 +25,7 @@ public class Runner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Sending message...");
 		rabbitTemplate.convertAndSend(Application.queueName, "Hello from RabbitMQ!");
-		receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
+		receiver1.getLatch().await(10000, TimeUnit.MILLISECONDS);
 		context.close();
 	}
 
