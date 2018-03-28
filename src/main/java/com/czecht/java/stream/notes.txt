@@ -1,0 +1,13 @@
+stream()
+parallelStream()
+
+- operacje leniwe
+
+stream().filter(...).count()
+
+# Create stream
+- Collection    -> stream()/parallelStream()
+- Array         -> Stream.of(...);
+-               -> Arrays.stream(array, from, to)
+- Empty stream  -> Stream.empty()
+- Infinite      -> Stream.generate
